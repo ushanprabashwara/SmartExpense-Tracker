@@ -168,6 +168,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onQui
             <PlusCircle size={14} />
             Quick Income
           </button>
+          <div className="pt-2 text-[10px] text-slate-500 text-center">
+            © 2026 Ushan Prabashwara. All rights reserved.
+          </div>
         </div>
       </aside>
     </>

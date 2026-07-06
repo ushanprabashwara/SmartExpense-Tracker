@@ -131,39 +131,6 @@ export const AboutView: React.FC = () => {
             </div>
           </div>
 
-          {/* Download Box */}
-          <div className="p-5 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 dark:from-emerald-950 dark:to-slate-900 text-white shadow-sm space-y-4">
-            <div className="p-2 w-fit rounded-xl bg-white/10 backdrop-blur-md">
-              <PiggyBank size={20} className="text-emerald-200" />
-            </div>
-            
-            <div>
-              <h3 className="font-display font-semibold text-sm">Download Source Bundle</h3>
-              <p className="text-[11px] text-emerald-100/80 mt-1 leading-relaxed">
-                Click below to download the compiled HTML5 / CSS3 / ES6 / Bootstrap 5 / Local Storage version of this Expense Tracker, fully formatted into the custom folder structure requested. Perfect for local running or uploading to your GitHub Pages!
-              </p>
-            </div>
-
-            <button
-              onClick={handleDownloadZip}
-              disabled={downloading}
-              className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-semibold text-emerald-700 bg-white hover:bg-emerald-50 active:bg-emerald-100 disabled:opacity-50 shadow-md transition-all cursor-pointer"
-            >
-              {downloading ? (
-                <>Packing File...</>
-              ) : (
-                <>
-                  <Download size={14} /> Download Bootstrap ZIP
-                </>
-              )}
-            </button>
-
-            {downloadSuccess && (
-              <div className="text-[10px] text-emerald-200 font-bold text-center flex items-center justify-center gap-1 mt-1 animate-fade-in">
-                <CheckCircle size={12} /> Bundle downloaded successfully!
-              </div>
-            )}
-          </div>
         </div>
 
       </div>
