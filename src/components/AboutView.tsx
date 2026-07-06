@@ -129,6 +129,15 @@ export const AboutView: React.FC = () => {
                 <span className="font-semibold text-emerald-500">Apache 2.0</span>
               </div>
             </div>
+
+            <a
+              href="http://ushanprabashwara.github.io/My-Portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-xs font-semibold shadow-lg shadow-violet-600/20 hover:from-violet-500 hover:to-indigo-500 transition-all"
+            >
+              <ExternalLink size={14} /> UP. - Portfolio
+            </a>
           </div>
 
         </div>
