@@ -33,37 +33,15 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const SEED_TRANSACTIONS: Transaction[] = [
-  { id: 't1', title: 'Monthly Salary', amount: 3500, category: 'Salary', date: '2026-07-01', notes: 'Primary job payment', type: 'income' },
-  { id: 't2', title: 'Freelance Website', amount: 850, category: 'Freelance', date: '2026-07-03', notes: 'Completed portfolio site', type: 'income' },
-  { id: 't3', title: 'Apartment Rent', amount: 1200, category: 'Rent', date: '2026-07-01', notes: 'Monthly rent for apartment', type: 'expense', paymentMethod: 'Bank Transfer' },
-  { id: 't4', title: 'Weekly Grocery shopping', amount: 145.50, category: 'Food', date: '2026-07-02', notes: 'Supermarket supplies', type: 'expense', paymentMethod: 'Credit Card' },
-  { id: 't5', title: 'Tech Gadget Purchase', amount: 249.99, category: 'Shopping', date: '2026-07-04', notes: 'Wireless noise cancelling headphones', type: 'expense', paymentMethod: 'Digital Wallet' },
-  { id: 't6', title: 'Gas Station Refuel', amount: 45.00, category: 'Transport', date: '2026-07-04', notes: 'Full tank of fuel', type: 'expense', paymentMethod: 'Debit Card' },
-  { id: 't7', title: 'Streaming Service', amount: 15.99, category: 'Entertainment', date: '2026-07-05', notes: 'Netflix ultra HD subscription', type: 'expense', paymentMethod: 'Credit Card' },
-  { id: 't8', title: 'Scholarship Allowance', amount: 400.00, category: 'Scholarship', date: '2026-07-02', notes: 'Quarterly academic reward', type: 'income' },
-  { id: 't9', title: 'Doctor Checkup', amount: 75.00, category: 'Healthcare', date: '2026-07-03', notes: 'Annual checkup clinic fee', type: 'expense', paymentMethod: 'Cash' },
-  { id: 't10', title: 'Electricity Bill', amount: 110.00, category: 'Utilities', date: '2026-07-04', notes: 'Power consumption', type: 'expense', paymentMethod: 'Bank Transfer' }
-];
-
-const SEED_SAVINGS: SavingsGoal[] = [
-  { id: 's1', name: 'MacBook Pro Fund', targetAmount: 2000, currentSavings: 1450, completed: false, dateCreated: '2026-06-10' },
-  { id: 's2', name: 'Emergency Safety Net', targetAmount: 5000, currentSavings: 3000, completed: false, dateCreated: '2026-05-01' },
-  { id: 's3', name: 'Europe Summer Trip', targetAmount: 3500, currentSavings: 3500, completed: true, dateCreated: '2026-01-15' }
-];
-
-const SEED_REMINDERS: BillReminder[] = [
-  { id: 'r1', name: 'Home Broadband Internet', dueDate: '2026-07-05', amount: 60, category: 'Utilities', isPaid: false },
-  { id: 'r2', name: 'AWS Cloud Hosting Bill', dueDate: '2026-07-10', amount: 24.50, category: 'Utilities', isPaid: false },
-  { id: 'r3', name: 'Gym Monthly Pass', dueDate: '2026-06-30', amount: 45.00, category: 'Healthcare', isPaid: false }, // Overdue
-  { id: 'r4', name: 'Adobe Creative Cloud', dueDate: '2026-07-28', amount: 54.99, category: 'Entertainment', isPaid: false }
-];
+const EMPTY_TRANSACTIONS: Transaction[] = [];
+const EMPTY_SAVINGS: SavingsGoal[] = [];
+const EMPTY_REMINDERS: BillReminder[] = [];
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [savingsGoals, setSavingsGoals] = useState<SavingsGoal[]>([]);
   const [billReminders, setBillReminders] = useState<BillReminder[]>([]);
-  const [budget, setBudget] = useState<number>(2500);
+  const [budget, setBudget] = useState<number>(0);
   const [settings, setSettings] = useState<AppSettings>({ theme: 'light', currency: 'USD' });
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -79,29 +57,29 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (storedTx) {
         setTransactions(JSON.parse(storedTx));
       } else {
-        setTransactions(SEED_TRANSACTIONS);
-        localStorage.setItem('smart_expense_transactions', JSON.stringify(SEED_TRANSACTIONS));
+        setTransactions(EMPTY_TRANSACTIONS);
+        localStorage.setItem('smart_expense_transactions', JSON.stringify(EMPTY_TRANSACTIONS));
       }
 
       if (storedSavings) {
         setSavingsGoals(JSON.parse(storedSavings));
       } else {
-        setSavingsGoals(SEED_SAVINGS);
-        localStorage.setItem('smart_expense_savings', JSON.stringify(SEED_SAVINGS));
+        setSavingsGoals(EMPTY_SAVINGS);
+        localStorage.setItem('smart_expense_savings', JSON.stringify(EMPTY_SAVINGS));
       }
 
       if (storedReminders) {
         setBillReminders(JSON.parse(storedReminders));
       } else {
-        setBillReminders(SEED_REMINDERS);
-        localStorage.setItem('smart_expense_reminders', JSON.stringify(SEED_REMINDERS));
+        setBillReminders(EMPTY_REMINDERS);
+        localStorage.setItem('smart_expense_reminders', JSON.stringify(EMPTY_REMINDERS));
       }
 
       if (storedBudget) {
         setBudget(Number(storedBudget));
       } else {
-        setBudget(2500);
-        localStorage.setItem('smart_expense_budget', '2500');
+        setBudget(0);
+        localStorage.setItem('smart_expense_budget', '0');
       }
 
       if (storedSettings) {
